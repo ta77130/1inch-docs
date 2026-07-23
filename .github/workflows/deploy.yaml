@@ -8,11 +8,10 @@ on:
       - .github/**
   # manual trigger
   workflow_dispatch:
-
 jobs:
   # Wait for up to a minute for previous run to complete, abort if not done by then
   pre-run:
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     timeout-minutes: 15
     steps:
       - name: 'Block Concurrent Executions'
@@ -25,7 +24,7 @@ jobs:
   bump_version:
     name: Bump Version
     needs: pre-run
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     outputs:
       new_tag: ${{ steps.github_tag_action.outputs.new_tag }}
       changelog: ${{ steps.github_tag_action.outputs.changelog }}
@@ -42,7 +41,7 @@ jobs:
 
   create_release:
     name: Create Release
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     needs: bump_version
     if: ${{ needs.bump_version.outputs.new_tag != null }}
     steps:

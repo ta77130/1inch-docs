@@ -11,7 +11,7 @@ on:
 jobs:
   scrape:
     name: Rebuild Index
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     container:
       image: typesense/docsearch-scraper:latest
     strategy:
@@ -21,8 +21,7 @@ jobs:
         - hel
         - fsn
     steps:
-    -
-      name: Run scraper
+    - name: Run scraper
       env:
         HOME: /root
         TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_SCRAPER_API_KEY }}

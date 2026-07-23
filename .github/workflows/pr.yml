@@ -8,11 +8,10 @@ on:
       - .github/**
   # manual trigger
   workflow_dispatch:
-
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: tenki-standard-medium-4c-8g
     steps:
       - name: Clone source code
         uses: actions/checkout@v2
